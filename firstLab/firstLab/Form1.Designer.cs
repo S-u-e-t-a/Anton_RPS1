@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.InputBox = new System.Windows.Forms.GroupBox();
             this.ButtonChooseFile = new System.Windows.Forms.Button();
             this.radioButtonFile = new System.Windows.Forms.RadioButton();
             this.radioButtonRandom = new System.Windows.Forms.RadioButton();
             this.radioButtonManual = new System.Windows.Forms.RadioButton();
-            this.ButtonSaveEnteredData = new System.Windows.Forms.Button();
             this.labelSize = new System.Windows.Forms.Label();
             this.ButtonEnterArray = new System.Windows.Forms.Button();
             this.UpDownSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.InputArrayTextBox = new System.Windows.Forms.TextBox();
+            this.ButtonSaveEnteredData = new System.Windows.Forms.Button();
             this.ResultBox = new System.Windows.Forms.GroupBox();
             this.labelResult = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -120,17 +121,6 @@
             this.radioButtonManual.UseVisualStyleBackColor = true;
             this.radioButtonManual.CheckedChanged += new System.EventHandler(this.RadioButtonManual_CheckedChanged);
             // 
-            // ButtonSaveEnteredData
-            // 
-            this.ButtonSaveEnteredData.Enabled = false;
-            this.ButtonSaveEnteredData.Location = new System.Drawing.Point(16, 21);
-            this.ButtonSaveEnteredData.Name = "ButtonSaveEnteredData";
-            this.ButtonSaveEnteredData.Size = new System.Drawing.Size(197, 33);
-            this.ButtonSaveEnteredData.TabIndex = 9;
-            this.ButtonSaveEnteredData.Text = "Сохранить входные данные\r\n";
-            this.ButtonSaveEnteredData.UseVisualStyleBackColor = true;
-            this.ButtonSaveEnteredData.Click += new System.EventHandler(this.ButtonSaveEnteredData_Click);
-            // 
             // labelSize
             // 
             this.labelSize.AutoSize = true;
@@ -176,6 +166,17 @@
             this.InputArrayTextBox.Name = "InputArrayTextBox";
             this.InputArrayTextBox.Size = new System.Drawing.Size(404, 25);
             this.InputArrayTextBox.TabIndex = 0;
+            // 
+            // ButtonSaveEnteredData
+            // 
+            this.ButtonSaveEnteredData.Enabled = false;
+            this.ButtonSaveEnteredData.Location = new System.Drawing.Point(16, 21);
+            this.ButtonSaveEnteredData.Name = "ButtonSaveEnteredData";
+            this.ButtonSaveEnteredData.Size = new System.Drawing.Size(197, 33);
+            this.ButtonSaveEnteredData.TabIndex = 9;
+            this.ButtonSaveEnteredData.Text = "Сохранить входные данные\r\n";
+            this.ButtonSaveEnteredData.UseVisualStyleBackColor = true;
+            this.ButtonSaveEnteredData.Click += new System.EventHandler(this.ButtonSaveEnteredData_Click);
             // 
             // ResultBox
             // 
@@ -266,6 +267,7 @@
             this.Controls.Add(this.ResultBox);
             this.Controls.Add(this.InputBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Лаб №1 Вариант №3";
             this.InputBox.ResumeLayout(false);

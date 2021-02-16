@@ -45,8 +45,8 @@ namespace firstLab
                 }
                 System.IO.File.AppendAllText(path, Environment.NewLine);
                 System.IO.File.AppendAllText(path, "Количество отрицательных чисел перед наибольшим в массиве: " + result + Environment.NewLine);
-                MessageBox.Show("Results are saved",
-                                    "Information");
+                MessageBox.Show("Результаты сохранены",
+                                    "Информация");
             }
             catch
             {

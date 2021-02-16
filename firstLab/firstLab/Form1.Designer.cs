@@ -146,9 +146,19 @@
             // 
             this.UpDownSize.Enabled = false;
             this.UpDownSize.Location = new System.Drawing.Point(361, 79);
+            this.UpDownSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.UpDownSize.Name = "UpDownSize";
             this.UpDownSize.Size = new System.Drawing.Size(117, 25);
             this.UpDownSize.TabIndex = 3;
+            this.UpDownSize.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label1
             // 

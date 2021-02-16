@@ -13,6 +13,7 @@ namespace firstLab
 
         public int[] ManualInputting(string arr)
         {
+            int[] errorArr = {0};
             string[] splittedArr = arr.Split(' ');
 
             int[] tempArray = new int[splittedArr.Length];
@@ -27,6 +28,7 @@ namespace firstLab
             {
                 MessageBox.Show("Массив содержит символы или буквы. Попробуйте еще раз",
                     "Ошибка!");
+                return errorArr;
             }
             return tempArray;
         }
@@ -44,6 +46,7 @@ namespace firstLab
 
         public int[] FromFileFilling(string path)
         {
+            int[] errorArr = { 0 };
             string arrayStr;
             arrayStr = System.IO.File.ReadAllText(path);
 
@@ -61,6 +64,7 @@ namespace firstLab
             {
                 MessageBox.Show("Массив в файле содержит символы или буквы. Проверьте правильность данных в файле или укажите путь на другой файл ",
                     "Ошибка!");
+                return errorArr;
             }
             return tempArray;
         }

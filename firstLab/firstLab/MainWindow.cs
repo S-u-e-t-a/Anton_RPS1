@@ -68,6 +68,10 @@ namespace firstLab
                     {
                         labelResult.Text = "Нет решений";
                     }
+                    else if (mainArray.Length == 1 && mainArray[0] == 0)
+                    {
+                        labelResult.Text = "";
+                    }
                     else
                     {
                         labelResult.Text = result; // вывод результата
@@ -132,6 +136,8 @@ namespace firstLab
             {
                 SaveOUTToolStripMenuItem.Enabled = true;// разблокировка кнопки сохранения результатов
             }
+
+            UpDownSize.Value = mainArray.Length;
         }
 
         private void ButtonChooseFile_Click(object sender, EventArgs e) // нажатие кнопки выбора файла из которого загружаем массив
@@ -158,6 +164,7 @@ namespace firstLab
                 if (i != mainArray.Length - 1)
                     InputArrayTextBox.Text += " ";
             }
+            UpDownSize.Value = mainArray.Length;
         }
 
         private void InfoToolStripMenuItem1_Click(object sender, EventArgs e)

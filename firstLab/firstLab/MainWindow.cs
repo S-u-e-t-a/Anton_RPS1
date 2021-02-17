@@ -4,10 +4,10 @@ using System.Windows.Forms;
 
 namespace firstLab
 {
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         private const string smthGoesWrong = "-1"; // код потенциальной ошибки работы 
-        public Form1()
+        public MainWindow()
         {
             InitializeComponent();
             MaximizeBox = false; // запрет изменения размера окна
@@ -53,10 +53,10 @@ namespace firstLab
         private void ButtonEnterArray_Click(object sender, EventArgs e) // если нажата кнопка Запуск
         { 
             InputData Process = new InputData(); // создаём объект класса InputData
-            if (radioButtonManual.Checked == true) // если выбран ручной ввод
+            if (radioButtonManual.Checked) // если выбран ручной ввод
             {
                 string InputtedArray = InputArrayTextBox.Text; // вводим массив
-                if (InputtedArray == string.Empty) // обработка пустой строки
+                if (string.IsNullOrEmpty(InputtedArray)) // обработка пустой строки
                 {
                     MessageBox.Show("Вы пытаетесь ввести пустую строку. Попытайтесь еще раз", "Внимание!");
                 }
@@ -75,7 +75,7 @@ namespace firstLab
                 }
                 
             }
-            else if (radioButtonRandom.Checked == true) // если выбрано заполнение рандомными числами
+            else if (radioButtonRandom.Checked) // если выбрано заполнение рандомными числами
             {
                 int size = Convert.ToInt32(UpDownSize.Text); // получение размера будущего массива
                 mainArray = Process.RandomFilling(size); // формирование массива размером size
@@ -99,24 +99,18 @@ namespace firstLab
                 }
 
             }
-            else if (radioButtonFile.Checked == true) // если выбран ввод из файла
+            else if (radioButtonFile.Checked) // если выбран ввод из файла
             {
                 if (pathOpen == string.Empty) // обработка пустого имени файла
                 {
                     MessageBox.Show("Вы не выбрали файл. Сначала укажите из какого файла ввести данные", "Внимание!");
                 }
+                else if(InputArrayTextBox.Text == "0")
+                {
+                    MessageBox.Show("Вы не ввели массив", "Внимание!");
+                }
                 else
                 {
-                    mainArray = Process.FromFileFilling(pathOpen); // формирование массива из данных из файла
-
-                    InputArrayTextBox.Text = string.Empty;// очистка области вывода массива
-                    for (int i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
-                    {
-                        InputArrayTextBox.Text += mainArray[i];
-                        if (i != mainArray.Length - 1)
-                            InputArrayTextBox.Text += " ";
-                    }
-
                     string result = Process.CountNegative(mainArray).ToString(); // формирование результата задачи
                     if (result == smthGoesWrong) { // обработка отсутствия решений
                         labelResult.Text = "Нет решений";
@@ -129,14 +123,14 @@ namespace firstLab
                 pathOpen = string.Empty; // очистка имени файла
             }
 
-            if (mainArray != null) // если массив существует 
+            if (mainArray != null && !string.IsNullOrEmpty(InputArrayTextBox.Text)) // если массив существует 
             {
-                ButtonSaveEnteredData.Enabled = true;  // разблокировка кнопки сохранения введенного массива
+                SaveINToolStripMenuItem.Enabled = true;  // разблокировка кнопки сохранения введенного массива
             }
 
-            if (labelResult.Text != string.Empty) // если результат существует
+            if (!string.IsNullOrEmpty(InputArrayTextBox.Text)) // если результат существует
             {
-                ButtonSaveResults.Enabled = true;// разблокировка кнопки сохранения результатов
+                SaveOUTToolStripMenuItem.Enabled = true;// разблокировка кнопки сохранения результатов
             }
         }
 
@@ -154,9 +148,25 @@ namespace firstLab
             }
             pathOpen = openFileDialog.FileName; // получение имени файла 
 
+            InputData Process = new InputData(); // создаём объект класса InputData
+            mainArray = Process.FromFileFilling(pathOpen); // формирование массива из данных из файла
+
+            InputArrayTextBox.Text = string.Empty;// очистка области вывода массива
+            for (int i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
+            {
+                InputArrayTextBox.Text += mainArray[i];
+                if (i != mainArray.Length - 1)
+                    InputArrayTextBox.Text += " ";
+            }
         }
 
-        private void ButtonSaveEnteredData_Click(object sender, EventArgs e) // нажатие кнопки сохранения введенных данных
+        private void InfoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AboutBox infoWindow = new AboutBox(); // создание объекта класса AboutBox
+            infoWindow.Show(); // открываем форму с информацией
+        }
+
+        private void SaveINToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveData Saving = new SaveData(); // создание объекта класса SaveData
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
@@ -165,7 +175,7 @@ namespace firstLab
             Saving.SaveEnteredData(filenameSaveEnteredData, mainArray); // сохранение введённых данных
         }
 
-        private void ButtonSaveResults_Click(object sender, EventArgs e) // нажатие кнопки сохранения результатов
+        private void SaveOUTToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveData Saving = new SaveData(); // создание объекта класса SaveData
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
@@ -173,25 +183,5 @@ namespace firstLab
             string filenameSaveRes = saveFileDialog.FileName; // получение имени файла 
             Saving.SaveResults(filenameSaveRes, mainArray, labelResult.Text); // сохранение результатов
         }
-        private void ButtonInfo_Click(object sender, EventArgs e) // нажатие кнопки Информация
-        {
-            AboutBox infoWindow = new AboutBox(); // создание объекта класса AboutBox
-            infoWindow.Show(); // открываем форму с информацией
-        }
-
-        private void ButtonExit_Click(object sender, EventArgs e) // нажатие кнопки выход
-        {
-            DialogResult res = MessageBox.Show("Вы уверены, что хотите закрыть программу?",
-                "Внимание!",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button2
-                ); // обработка решения
-            if (res == DialogResult.Yes)
-            {
-                Close(); // выход
-            }
-        }
-
     }
 }

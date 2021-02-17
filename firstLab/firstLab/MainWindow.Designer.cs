@@ -1,6 +1,6 @@
 ﻿namespace firstLab
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.InputBox = new System.Windows.Forms.GroupBox();
             this.ButtonChooseFile = new System.Windows.Forms.Button();
             this.radioButtonFile = new System.Windows.Forms.RadioButton();
@@ -39,20 +39,20 @@
             this.UpDownSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.InputArrayTextBox = new System.Windows.Forms.TextBox();
-            this.ButtonSaveEnteredData = new System.Windows.Forms.Button();
             this.ResultBox = new System.Windows.Forms.GroupBox();
             this.labelResult = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ButtonExit = new System.Windows.Forms.Button();
-            this.ButtonInfo = new System.Windows.Forms.Button();
-            this.ButtonSaveResults = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveOUTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.InfoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.InputBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownSize)).BeginInit();
             this.ResultBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // InputBox
@@ -67,9 +67,9 @@
             this.InputBox.Controls.Add(this.label1);
             this.InputBox.Controls.Add(this.InputArrayTextBox);
             this.InputBox.Font = new System.Drawing.Font("Noto Sans Cond", 9.749999F, System.Drawing.FontStyle.Bold);
-            this.InputBox.Location = new System.Drawing.Point(13, 13);
+            this.InputBox.Location = new System.Drawing.Point(13, 27);
             this.InputBox.Name = "InputBox";
-            this.InputBox.Size = new System.Drawing.Size(615, 140);
+            this.InputBox.Size = new System.Drawing.Size(577, 140);
             this.InputBox.TabIndex = 0;
             this.InputBox.TabStop = false;
             this.InputBox.Text = "Ввод данных";
@@ -134,7 +134,7 @@
             // 
             this.ButtonEnterArray.Font = new System.Drawing.Font("Noto Sans Cond", 9.749999F, System.Drawing.FontStyle.Bold);
             this.ButtonEnterArray.ForeColor = System.Drawing.Color.OrangeRed;
-            this.ButtonEnterArray.Location = new System.Drawing.Point(522, 48);
+            this.ButtonEnterArray.Location = new System.Drawing.Point(484, 48);
             this.ButtonEnterArray.Name = "ButtonEnterArray";
             this.ButtonEnterArray.Size = new System.Drawing.Size(83, 26);
             this.ButtonEnterArray.TabIndex = 4;
@@ -171,31 +171,20 @@
             // 
             // InputArrayTextBox
             // 
-            this.InputArrayTextBox.Enabled = false;
             this.InputArrayTextBox.Location = new System.Drawing.Point(112, 48);
             this.InputArrayTextBox.Name = "InputArrayTextBox";
-            this.InputArrayTextBox.Size = new System.Drawing.Size(404, 25);
+            this.InputArrayTextBox.ReadOnly = true;
+            this.InputArrayTextBox.Size = new System.Drawing.Size(366, 25);
             this.InputArrayTextBox.TabIndex = 0;
-            // 
-            // ButtonSaveEnteredData
-            // 
-            this.ButtonSaveEnteredData.Enabled = false;
-            this.ButtonSaveEnteredData.Location = new System.Drawing.Point(16, 21);
-            this.ButtonSaveEnteredData.Name = "ButtonSaveEnteredData";
-            this.ButtonSaveEnteredData.Size = new System.Drawing.Size(197, 33);
-            this.ButtonSaveEnteredData.TabIndex = 9;
-            this.ButtonSaveEnteredData.Text = "Сохранить входные данные\r\n";
-            this.ButtonSaveEnteredData.UseVisualStyleBackColor = true;
-            this.ButtonSaveEnteredData.Click += new System.EventHandler(this.ButtonSaveEnteredData_Click);
             // 
             // ResultBox
             // 
             this.ResultBox.Controls.Add(this.labelResult);
             this.ResultBox.Controls.Add(this.label2);
             this.ResultBox.Font = new System.Drawing.Font("Noto Sans Cond", 9.749999F, System.Drawing.FontStyle.Bold);
-            this.ResultBox.Location = new System.Drawing.Point(13, 160);
+            this.ResultBox.Location = new System.Drawing.Point(13, 177);
             this.ResultBox.Name = "ResultBox";
-            this.ResultBox.Size = new System.Drawing.Size(252, 116);
+            this.ResultBox.Size = new System.Drawing.Size(577, 116);
             this.ResultBox.TabIndex = 1;
             this.ResultBox.TabStop = false;
             this.ResultBox.Text = "Результаты";
@@ -205,7 +194,7 @@
             this.labelResult.AutoSize = true;
             this.labelResult.Font = new System.Drawing.Font("Noto Sans Cond", 15.75F, System.Drawing.FontStyle.Bold);
             this.labelResult.ForeColor = System.Drawing.Color.Red;
-            this.labelResult.Location = new System.Drawing.Point(56, 75);
+            this.labelResult.Location = new System.Drawing.Point(291, 48);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(0, 28);
             this.labelResult.TabIndex = 1;
@@ -213,80 +202,82 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 18);
+            this.label2.Location = new System.Drawing.Point(28, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(188, 54);
+            this.label2.Size = new System.Drawing.Size(488, 18);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Количество отрицательных\r\nчисел в массиве перед\r\nнаибольшим положительным:";
-            // 
-            // ButtonExit
-            // 
-            this.ButtonExit.Location = new System.Drawing.Point(225, 60);
-            this.ButtonExit.Name = "ButtonExit";
-            this.ButtonExit.Size = new System.Drawing.Size(122, 33);
-            this.ButtonExit.TabIndex = 3;
-            this.ButtonExit.Text = "Выход";
-            this.ButtonExit.UseVisualStyleBackColor = true;
-            this.ButtonExit.Click += new System.EventHandler(this.ButtonExit_Click);
-            // 
-            // ButtonInfo
-            // 
-            this.ButtonInfo.Location = new System.Drawing.Point(225, 21);
-            this.ButtonInfo.Name = "ButtonInfo";
-            this.ButtonInfo.Size = new System.Drawing.Size(122, 33);
-            this.ButtonInfo.TabIndex = 2;
-            this.ButtonInfo.Text = "Информация";
-            this.ButtonInfo.UseVisualStyleBackColor = true;
-            this.ButtonInfo.Click += new System.EventHandler(this.ButtonInfo_Click);
-            // 
-            // ButtonSaveResults
-            // 
-            this.ButtonSaveResults.Enabled = false;
-            this.ButtonSaveResults.Location = new System.Drawing.Point(16, 60);
-            this.ButtonSaveResults.Name = "ButtonSaveResults";
-            this.ButtonSaveResults.Size = new System.Drawing.Size(197, 33);
-            this.ButtonSaveResults.TabIndex = 1;
-            this.ButtonSaveResults.Text = "Сохранить результаты";
-            this.ButtonSaveResults.UseVisualStyleBackColor = true;
-            this.ButtonSaveResults.Click += new System.EventHandler(this.ButtonSaveResults_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.ButtonSaveResults);
-            this.groupBox1.Controls.Add(this.ButtonExit);
-            this.groupBox1.Controls.Add(this.ButtonInfo);
-            this.groupBox1.Controls.Add(this.ButtonSaveEnteredData);
-            this.groupBox1.Font = new System.Drawing.Font("Noto Sans Cond", 9.749999F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(271, 160);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(357, 116);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Опции";
+            this.label2.Text = "Количество отрицательных чисел в массиве перед наибольшим положительным:";
             // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
-            // Form1
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.справкаToolStripMenuItem,
+            this.InfoToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(600, 26);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveINToolStripMenuItem,
+            this.SaveOUTToolStripMenuItem});
+            this.справкаToolStripMenuItem.Font = new System.Drawing.Font("Noto Sans Cond", 9.749999F);
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+            this.справкаToolStripMenuItem.Text = "Файл";
+            // 
+            // SaveINToolStripMenuItem
+            // 
+            this.SaveINToolStripMenuItem.Enabled = false;
+            this.SaveINToolStripMenuItem.Name = "SaveINToolStripMenuItem";
+            this.SaveINToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.SaveINToolStripMenuItem.Text = "Сохранить входные данные";
+            this.SaveINToolStripMenuItem.Click += new System.EventHandler(this.SaveINToolStripMenuItem_Click);
+            // 
+            // SaveOUTToolStripMenuItem
+            // 
+            this.SaveOUTToolStripMenuItem.Enabled = false;
+            this.SaveOUTToolStripMenuItem.Name = "SaveOUTToolStripMenuItem";
+            this.SaveOUTToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.SaveOUTToolStripMenuItem.Text = "Сохранить результат";
+            this.SaveOUTToolStripMenuItem.Click += new System.EventHandler(this.SaveOUTToolStripMenuItem_Click);
+            // 
+            // InfoToolStripMenuItem1
+            // 
+            this.InfoToolStripMenuItem1.Name = "InfoToolStripMenuItem1";
+            this.InfoToolStripMenuItem1.Size = new System.Drawing.Size(65, 22);
+            this.InfoToolStripMenuItem1.Text = "Справка";
+            this.InfoToolStripMenuItem1.Click += new System.EventHandler(this.InfoToolStripMenuItem1_Click);
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 288);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(600, 305);
             this.Controls.Add(this.ResultBox);
             this.Controls.Add(this.InputBox);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "MainWindow";
             this.Text = "Лаб №1 Вариант №3";
             this.InputBox.ResumeLayout(false);
             this.InputBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownSize)).EndInit();
             this.ResultBox.ResumeLayout(false);
             this.ResultBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -294,23 +285,23 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelSize;
         private System.Windows.Forms.GroupBox ResultBox;
-        private System.Windows.Forms.Button ButtonExit;
-        private System.Windows.Forms.Button ButtonInfo;
-        private System.Windows.Forms.Button ButtonSaveResults;
         private System.Windows.Forms.GroupBox InputBox;
         private System.Windows.Forms.NumericUpDown UpDownSize;
         private System.Windows.Forms.Button ButtonEnterArray;
-        private System.Windows.Forms.Button ButtonSaveEnteredData;
         private System.Windows.Forms.TextBox InputArrayTextBox;
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button ButtonChooseFile;
         private System.Windows.Forms.RadioButton radioButtonFile;
         private System.Windows.Forms.RadioButton radioButtonRandom;
         private System.Windows.Forms.RadioButton radioButtonManual;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem InfoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem SaveINToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveOUTToolStripMenuItem;
     }
 }
 

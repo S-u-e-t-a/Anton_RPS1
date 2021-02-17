@@ -90,7 +90,7 @@ namespace firstLab
                     countofNegative++;
                 }
             }
-            if (indexOfMax == 0)
+            if (max == array[0] && (indexOfMax != 0 || max < 0))
                 return -1;
             return countofNegative;
         }

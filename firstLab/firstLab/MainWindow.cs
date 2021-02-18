@@ -6,16 +6,15 @@ namespace firstLab
 {
     public partial class MainWindow : Form
     {
-        private const string smthGoesWrong = "-1"; // код потенциальной ошибки работы 
+        private const string smthGoesWrong = "-1"; // код потенциальной ошибки работы
+        private string pathOpen = "";
+        private int[] mainArray = null;
         public MainWindow()
         {
             InitializeComponent();
             MaximizeBox = false; // запрет изменения размера окна
-            saveFileDialog.Filter = "Text files(*.txt)|*.txt"; // фильтр файлов при сохранении (All?)
+            saveFileDialog.Filter = "Text files(*.txt)|*.txt"; // фильтр файлов при сохранении 
         }
-
-        private string pathOpen; 
-        private int[] mainArray = null;
 
         ///<summary>
         ///Область описания поведения элементов интерфейса для ввода массива
@@ -62,8 +61,9 @@ namespace firstLab
                 }
                 else
                 {
+                    Counting countNegative = new Counting(); // создаём объект класса Counting
                     mainArray = Process.ManualInputting(InputtedArray); // формирование массива из чисел
-                    string result = Process.CountNegative(mainArray).ToString(); // формирование результата
+                    string result = countNegative.CountNegative(mainArray).ToString(); // формирование результата
                     if (result == smthGoesWrong) // обработка возможности отсутствия результата
                     {
                         labelResult.Text = "Нет решений";
@@ -91,8 +91,8 @@ namespace firstLab
                     if(i != mainArray.Length - 1)
                         InputArrayTextBox.Text += " ";
                 }
-
-                string result = Process.CountNegative(mainArray).ToString(); // формирование результата
+                Counting countNegative = new Counting(); // создаём объект класса Counting
+                string result = countNegative.CountNegative(mainArray).ToString(); // формирование результата
                 if (result == smthGoesWrong) // обработка отсутствия результата
                 {
                     labelResult.Text = "Нет решений";
@@ -109,13 +109,14 @@ namespace firstLab
                 {
                     MessageBox.Show("Вы не выбрали файл. Сначала укажите из какого файла ввести данные", "Внимание!");
                 }
-                else if(InputArrayTextBox.Text == "0")
+                else if(mainArray == null)
                 {
                     MessageBox.Show("Вы не ввели массив", "Внимание!");
                 }
                 else
                 {
-                    string result = Process.CountNegative(mainArray).ToString(); // формирование результата задачи
+                    Counting countNegative = new Counting(); // создаём объект класса Counting
+                    string result = countNegative.CountNegative(mainArray).ToString(); // формирование результата задачи
                     if (result == smthGoesWrong) { // обработка отсутствия решений
                         labelResult.Text = "Нет решений";
                     }
@@ -124,9 +125,9 @@ namespace firstLab
                         labelResult.Text = result; // вывод результата
                     }
                 }
-                pathOpen = string.Empty; // очистка имени файла
+                
             }
-
+            pathOpen = string.Empty; // очистка имени файла
             if (mainArray != null && !string.IsNullOrEmpty(InputArrayTextBox.Text)) // если массив существует 
             {
                 SaveINToolStripMenuItem.Enabled = true;  // разблокировка кнопки сохранения введенного массива
@@ -136,8 +137,10 @@ namespace firstLab
             {
                 SaveOUTToolStripMenuItem.Enabled = true;// разблокировка кнопки сохранения результатов
             }
-
-            UpDownSize.Value = mainArray.Length;
+            if (mainArray != null)
+            {
+                UpDownSize.Value = mainArray.Length;
+            }
         }
 
         private void ButtonChooseFile_Click(object sender, EventArgs e) // нажатие кнопки выбора файла из которого загружаем массив
@@ -158,13 +161,19 @@ namespace firstLab
             mainArray = Process.FromFileFilling(pathOpen); // формирование массива из данных из файла
 
             InputArrayTextBox.Text = string.Empty;// очистка области вывода массива
-            for (int i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
+            if (mainArray != null)
             {
-                InputArrayTextBox.Text += mainArray[i];
-                if (i != mainArray.Length - 1)
-                    InputArrayTextBox.Text += " ";
+                for (int i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
+                {
+                    InputArrayTextBox.Text += mainArray[i];
+                    if (i != mainArray.Length - 1)
+                        InputArrayTextBox.Text += " ";
+                }
             }
-            UpDownSize.Value = mainArray.Length;
+            if (mainArray != null)
+            {
+                UpDownSize.Value = mainArray.Length;
+            }
         }
 
         private void InfoToolStripMenuItem1_Click(object sender, EventArgs e)

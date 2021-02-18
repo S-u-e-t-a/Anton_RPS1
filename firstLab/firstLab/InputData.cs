@@ -11,7 +11,7 @@ namespace firstLab
     public class InputData
     {
 
-        public int[] ManualInputting(string arr)
+        public int[] ManualInputting(string arr) 
         {
             int[] errorArr = {0};
             string[] splittedArr = arr.Split(' ');
@@ -64,35 +64,9 @@ namespace firstLab
             {
                 MessageBox.Show("Массив в файле содержит символы или буквы. Проверьте правильность данных в файле или укажите путь на другой файл ",
                     "Ошибка!");
-                return errorArr;
+                return null;
             }
             return tempArray;
-        }
-
-        public int CountNegative(int[] array)
-        {
-            int max = array[0];
-            int indexOfMax = 0;
-            int countofNegative = 0;
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i] > max && array[i] > 0)
-                {
-                    max = array[i];
-                    indexOfMax = i;
-                }
-            }
-
-            for (int i = 0; i < indexOfMax; i++)
-            {
-                if (array[i] < 0)
-                {
-                    countofNegative++;
-                }
-            }
-            if (max == array[0] && (indexOfMax != 0 || max < 0))
-                return -1;
-            return countofNegative;
-        }
+        }  
     }
 }

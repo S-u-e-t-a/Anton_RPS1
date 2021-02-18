@@ -15,7 +15,13 @@ namespace firstLab
         {
             int[] errorArr = {0};
             string[] splittedArr = arr.Split(' ');
-
+            for(int i = 1; i < splittedArr.Length; i++)
+            {
+                if(splittedArr[i] == splittedArr[i-1] && splittedArr[i] == " ")
+                {
+                    splittedArr[i] = splittedArr[i].Remove(1);
+                }
+            }
             int[] tempArray = new int[splittedArr.Length];
             try
             {

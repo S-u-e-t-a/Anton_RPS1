@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 
@@ -177,9 +178,10 @@ namespace firstLab
         }
 
         private void InfoToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
+        { 
             AboutBox infoWindow = new AboutBox(); // создание объекта класса AboutBox
-            infoWindow.Show(); // открываем форму с информацией
+            if (Application.OpenForms.OfType<AboutBox>().Count() < 1)
+                infoWindow.Show(); // открываем форму с информацией
         }
 
         private void SaveINToolStripMenuItem_Click(object sender, EventArgs e)

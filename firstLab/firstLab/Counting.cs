@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace firstLab
 {
-    class Counting
+    public class Counting
     {
         public int CountNegative(int[] array)
         {

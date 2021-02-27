@@ -138,9 +138,16 @@ namespace firstLab
             {
                 SaveOUTToolStripMenuItem.Enabled = true;// разблокировка кнопки сохранения результатов
             }
-            if (mainArray != null)
+            try
             {
-                UpDownSize.Value = mainArray.Length;
+                if (mainArray != null)
+                {
+                    UpDownSize.Value = mainArray.Length;
+                }
+            }
+            catch
+            {
+                labelSize.Text += " >";
             }
         }
 
@@ -171,9 +178,16 @@ namespace firstLab
                         InputArrayTextBox.Text += " ";
                 }
             }
-            if (mainArray != null)
+            try
             {
-                UpDownSize.Value = mainArray.Length;
+                if (mainArray != null)
+                {
+                    UpDownSize.Value = mainArray.Length;
+                }
+            }
+            catch
+            {
+                labelSize.Text += " >";
             }
         }
 

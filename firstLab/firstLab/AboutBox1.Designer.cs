@@ -136,8 +136,7 @@
             this.textBoxDescription.Size = new System.Drawing.Size(351, 116);
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = "Определить число отрицательных элементов, расположенных перед наибольшим положите" +
-    "льным элементом одномерного массива, размер которого М.";
+            this.textBoxDescription.Text = resources.GetString("textBoxDescription.Text");
             // 
             // OkButton
             // 

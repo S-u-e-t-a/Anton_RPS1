@@ -77,7 +77,7 @@
             // ButtonChooseFile
             // 
             this.ButtonChooseFile.Enabled = false;
-            this.ButtonChooseFile.Location = new System.Drawing.Point(252, 106);
+            this.ButtonChooseFile.Location = new System.Drawing.Point(245, 106);
             this.ButtonChooseFile.Name = "ButtonChooseFile";
             this.ButtonChooseFile.Size = new System.Drawing.Size(151, 26);
             this.ButtonChooseFile.TabIndex = 13;
@@ -124,7 +124,7 @@
             // labelSize
             // 
             this.labelSize.AutoSize = true;
-            this.labelSize.Location = new System.Drawing.Point(249, 79);
+            this.labelSize.Location = new System.Drawing.Point(242, 79);
             this.labelSize.Name = "labelSize";
             this.labelSize.Size = new System.Drawing.Size(106, 18);
             this.labelSize.TabIndex = 8;
@@ -252,8 +252,8 @@
             // InfoToolStripMenuItem1
             // 
             this.InfoToolStripMenuItem1.Name = "InfoToolStripMenuItem1";
-            this.InfoToolStripMenuItem1.Size = new System.Drawing.Size(65, 22);
-            this.InfoToolStripMenuItem1.Text = "Справка";
+            this.InfoToolStripMenuItem1.Size = new System.Drawing.Size(75, 22);
+            this.InfoToolStripMenuItem1.Text = "О проекте";
             this.InfoToolStripMenuItem1.Click += new System.EventHandler(this.InfoToolStripMenuItem1_Click);
             // 
             // MainWindow

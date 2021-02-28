@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using firstLab;
 
 namespace UnitTestLab1
@@ -11,8 +10,8 @@ namespace UnitTestLab1
         public void TestMethodUsualArray()
         {
             int[] arr = { -1, 1, -2, 4, -3 };
-            Counting test = new Counting();
-            int res = test.CountNegative(arr);
+            var test = new Counting();
+            var res = test.CountNegative(arr);
 
             Assert.AreEqual(2, res);
         }
@@ -21,8 +20,8 @@ namespace UnitTestLab1
         public void TestMethodAllNegative()
         {
             int[] arr = { -1, -4, -2 };
-            Counting test = new Counting();
-            int res = test.CountNegative(arr);
+            var test = new Counting();
+            var res = test.CountNegative(arr);
 
             Assert.AreEqual(-1, res);
         }
@@ -31,8 +30,8 @@ namespace UnitTestLab1
         public void TestMethodAllPositive()
         {
             int[] arr = { 7, 30, 4 };
-            Counting test = new Counting();
-            int res = test.CountNegative(arr);
+            var test = new Counting();
+            var res = test.CountNegative(arr);
 
             Assert.AreEqual(0, res);
         }
@@ -41,8 +40,8 @@ namespace UnitTestLab1
         public void TestMethodAllZero()
         {
             int[] arr = { 0, 0, 0 };
-            Counting test = new Counting();
-            int res = test.CountNegative(arr);
+            var test = new Counting();
+            var res = test.CountNegative(arr);
 
             Assert.AreEqual(0, res);
         }
@@ -51,8 +50,8 @@ namespace UnitTestLab1
         public void TestMethodMaxIsFirst()
         {
             int[] arr = { 10, -60, -12 };
-            Counting test = new Counting();
-            int res = test.CountNegative(arr);
+            var test = new Counting();
+            var res = test.CountNegative(arr);
 
             Assert.AreEqual(0, res);
         }

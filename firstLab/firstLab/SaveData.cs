@@ -1,30 +1,29 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace firstLab
 {
-    class SaveData
+    internal class SaveData
     {
         public void SaveEnteredData(string path, int[] arrayToSave)
         {
             try
             {
-                System.IO.File.WriteAllText(path, string.Empty);
-                for (int i = 0; i < arrayToSave.Length; i++)
+                File.WriteAllText(path, string.Empty);
+                for (var i = 0; i < arrayToSave.Length; i++)
                 {
-                    System.IO.File.AppendAllText(path, arrayToSave[i].ToString());
-                    if(i != arrayToSave.Length-1)
-                    {
-                        System.IO.File.AppendAllText(path, " ");
-                    }
+                    File.AppendAllText(path, arrayToSave[i].ToString());
+                    if (i != arrayToSave.Length - 1) File.AppendAllText(path, @" ");
                 }
-                MessageBox.Show("Данные сохранены",
-                                    "Информация");
+
+                MessageBox.Show(@"Данные сохранены",
+                    @"Информация");
             }
             catch
             {
-                MessageBox.Show("Выбранный Вами файл предназначен только для чтения",
-                    "Ошибка!");
+                MessageBox.Show(@"Выбранный Вами файл предназначен только для чтения",
+                    @"Ошибка!");
             }
         }
 
@@ -32,26 +31,26 @@ namespace firstLab
         {
             try
             {
-                System.IO.File.WriteAllText(path, string.Empty);
-                System.IO.File.AppendAllText(path, "Вы ввели массив длинной: " + arrayToSave.Length + Environment.NewLine);
-                System.IO.File.AppendAllText(path, "Массив: " + Environment.NewLine);
-                for (int i = 0; i < arrayToSave.Length; i++)
+                File.WriteAllText(path, string.Empty);
+                File.AppendAllText(path, @"Вы ввели массив длинной: " + arrayToSave.Length + Environment.NewLine);
+                File.AppendAllText(path, @"Массив: " + Environment.NewLine);
+                for (var i = 0; i < arrayToSave.Length; i++)
                 {
-                    System.IO.File.AppendAllText(path, "[" + arrayToSave[i].ToString() + "]");
-                    if (i != arrayToSave.Length - 1)
-                    {
-                        System.IO.File.AppendAllText(path, " ");
-                    }
+                    File.AppendAllText(path, @"[" + arrayToSave[i] + @"]");
+                    if (i != arrayToSave.Length - 1) File.AppendAllText(path, @" ");
                 }
-                System.IO.File.AppendAllText(path, Environment.NewLine);
-                System.IO.File.AppendAllText(path, "Количество отрицательных чисел перед наибольшим положительным элементом в массиве: " + result + Environment.NewLine);
-                MessageBox.Show("Результаты сохранены",
-                                    "Информация");
+
+                File.AppendAllText(path, Environment.NewLine);
+                File.AppendAllText(path,
+                    @"Количество отрицательных чисел перед наибольшим положительным элементом в массиве: " + result +
+                    Environment.NewLine);
+                MessageBox.Show(@"Результаты сохранены",
+                    @"Информация");
             }
             catch
             {
-                MessageBox.Show("Выбранный Вами файл предназначен только для чтения",
-                    "Ошибка!");
+                MessageBox.Show(@"Выбранный Вами файл предназначен только для чтения",
+                    @"Ошибка!");
             }
         }
     }

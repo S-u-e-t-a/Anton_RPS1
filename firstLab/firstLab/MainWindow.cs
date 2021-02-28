@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
 
 
 namespace firstLab
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public partial class MainWindow : Form
     {
-        private const string smthGoesWrong = "-1"; // код потенциальной ошибки работы
+        private const string SmthGoesWrong = "-1"; // код потенциальной ошибки работы
         private string pathOpen = "";
-        private int[] mainArray = null;
+        private int[] mainArray;
         public MainWindow()
         {
             InitializeComponent();
             MaximizeBox = false; // запрет изменения размера окна
-            saveFileDialog.Filter = "Text files(*.txt)|*.txt"; // фильтр файлов при сохранении 
+            saveFileDialog.Filter = @"Text files(*.txt)|*.txt"; // фильтр файлов при сохранении 
         }
 
         ///<summary>
@@ -55,19 +57,19 @@ namespace firstLab
             InputData Process = new InputData(); // создаём объект класса InputData
             if (radioButtonManual.Checked) // если выбран ручной ввод
             {
-                string InputtedArray = InputArrayTextBox.Text; // вводим массив
-                if (string.IsNullOrEmpty(InputtedArray)) // обработка пустой строки
+                string inputtedArray = InputArrayTextBox.Text; // вводим массив
+                if (string.IsNullOrEmpty(inputtedArray)) // обработка пустой строки
                 {
-                    MessageBox.Show("Вы пытаетесь ввести пустую строку. Попытайтесь еще раз", "Внимание!");
+                    MessageBox.Show(@"Вы пытаетесь ввести пустую строку. Попытайтесь еще раз", @"Внимание!");
                 }
                 else
                 {
-                    Counting countNegative = new Counting(); // создаём объект класса Counting
-                    mainArray = Process.ManualInputting(InputtedArray); // формирование массива из чисел
-                    string result = countNegative.CountNegative(mainArray).ToString(); // формирование результата
-                    if (result == smthGoesWrong) // обработка возможности отсутствия результата
+                    var countNegative = new Counting(); // создаём объект класса Counting
+                    mainArray = Process.ManualInputting(inputtedArray); // формирование массива из чисел
+                    var result = countNegative.CountNegative(mainArray).ToString(); // формирование результата
+                    if (result == SmthGoesWrong) // обработка возможности отсутствия результата
                     {
-                        labelResult.Text = "Нет решений";
+                        labelResult.Text = @"Нет решений";
                     }
                     else if (mainArray.Length == 1 && mainArray[0] == 0)
                     {
@@ -82,49 +84,36 @@ namespace firstLab
             }
             else if (radioButtonRandom.Checked) // если выбрано заполнение рандомными числами
             {
-                int size = Convert.ToInt32(UpDownSize.Text); // получение размера будущего массива
+                var size = Convert.ToInt32(UpDownSize.Text); // получение размера будущего массива
                 mainArray = Process.RandomFilling(size); // формирование массива размером size
 
                 InputArrayTextBox.Text = string.Empty; // очистка области вывода массива
-                for (int i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
+                for (var i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
                 {
                     InputArrayTextBox.Text += mainArray[i];
                     if(i != mainArray.Length - 1)
-                        InputArrayTextBox.Text += " ";
+                        InputArrayTextBox.Text += @" ";
                 }
-                Counting countNegative = new Counting(); // создаём объект класса Counting
-                string result = countNegative.CountNegative(mainArray).ToString(); // формирование результата
-                if (result == smthGoesWrong) // обработка отсутствия результата
-                {
-                    labelResult.Text = "Нет решений";
-                }
-                else
-                {
-                    labelResult.Text = result; // вывод результата
-                }
+                var countNegative = new Counting(); // создаём объект класса Counting
+                var result = countNegative.CountNegative(mainArray).ToString(); // формирование результата
+                labelResult.Text = result == SmthGoesWrong ? "Нет решений" : result;
 
             }
             else if (radioButtonFile.Checked) // если выбран ввод из файла
             {
                 if (pathOpen == string.Empty) // обработка пустого имени файла
                 {
-                    MessageBox.Show("Вы не выбрали файл. Сначала укажите из какого файла ввести данные", "Внимание!");
+                    MessageBox.Show(@"Вы не выбрали файл. Сначала укажите из какого файла ввести данные", @"Внимание!");
                 }
                 else if(mainArray == null)
                 {
-                    MessageBox.Show("Вы не ввели массив", "Внимание!");
+                    MessageBox.Show(@"Вы не ввели массив", @"Внимание!");
                 }
                 else
                 {
-                    Counting countNegative = new Counting(); // создаём объект класса Counting
-                    string result = countNegative.CountNegative(mainArray).ToString(); // формирование результата задачи
-                    if (result == smthGoesWrong) { // обработка отсутствия решений
-                        labelResult.Text = "Нет решений";
-                    }
-                    else
-                    {
-                        labelResult.Text = result; // вывод результата
-                    }
+                    var countNegative = new Counting(); // создаём объект класса Counting
+                    var result = countNegative.CountNegative(mainArray).ToString(); // формирование результата задачи
+                    labelResult.Text = result == SmthGoesWrong ? "Нет решений" : result;
                 }
                 
             }
@@ -147,14 +136,14 @@ namespace firstLab
             }
             catch
             {
-                labelSize.Text += " >";
+                labelSize.Text += @" >";
             }
         }
 
         private void ButtonChooseFile_Click(object sender, EventArgs e) // нажатие кнопки выбора файла из которого загружаем массив
         {
-            MessageBox.Show("Обратите внимание, что файл, который Вы хотите открыть, должен содержать только числа, разделённые знаком пробела. Символы, буквы и лишние знаки пробела приведут к ошибке!",
-                "Внимание!",
+            MessageBox.Show(@"Обратите внимание, что файл, который Вы хотите открыть, должен содержать только числа, разделённые знаком пробела. Символы, буквы и лишние знаки пробела приведут к ошибке!",
+                @"Внимание!",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
                 ); // предупреждение о формате вводимых данных
@@ -165,17 +154,17 @@ namespace firstLab
             }
             pathOpen = openFileDialog.FileName; // получение имени файла 
 
-            InputData Process = new InputData(); // создаём объект класса InputData
+            var Process = new InputData(); // создаём объект класса InputData
             mainArray = Process.FromFileFilling(pathOpen); // формирование массива из данных из файла
 
             InputArrayTextBox.Text = string.Empty;// очистка области вывода массива
             if (mainArray != null)
             {
-                for (int i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
+                for (var i = 0; i < mainArray.Length; i++) // вывод сформированного массива 
                 {
                     InputArrayTextBox.Text += mainArray[i];
                     if (i != mainArray.Length - 1)
-                        InputArrayTextBox.Text += " ";
+                        InputArrayTextBox.Text += @" ";
                 }
             }
             try
@@ -187,33 +176,33 @@ namespace firstLab
             }
             catch
             {
-                labelSize.Text += " >";
+                labelSize.Text += @" >";
             }
         }
 
         private void InfoToolStripMenuItem1_Click(object sender, EventArgs e)
         { 
-            AboutBox infoWindow = new AboutBox(); // создание объекта класса AboutBox
-            if (Application.OpenForms.OfType<AboutBox>().Count() < 1)
+            var infoWindow = new AboutBox(); // создание объекта класса AboutBox
+            if (!Application.OpenForms.OfType<AboutBox>().Any())
                 infoWindow.Show(); // открываем форму с информацией
         }
 
         private void SaveINToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveData Saving = new SaveData(); // создание объекта класса SaveData
+            var saving = new SaveData(); // создание объекта класса SaveData
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return; // обработка закрытия окна сохранения введенных данных
-            string filenameSaveEnteredData = saveFileDialog.FileName;// получение имени файла 
-            Saving.SaveEnteredData(filenameSaveEnteredData, mainArray); // сохранение введённых данных
+            var filenameSaveEnteredData = saveFileDialog.FileName;// получение имени файла 
+            saving.SaveEnteredData(filenameSaveEnteredData, mainArray); // сохранение введённых данных
         }
 
         private void SaveOUTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveData Saving = new SaveData(); // создание объекта класса SaveData
+            var saving = new SaveData(); // создание объекта класса SaveData
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return; // обработка закрытия окна сохранения результатов
-            string filenameSaveRes = saveFileDialog.FileName; // получение имени файла 
-            Saving.SaveResults(filenameSaveRes, mainArray, labelResult.Text); // сохранение результатов
+            var filenameSaveRes = saveFileDialog.FileName; // получение имени файла 
+            saving.SaveResults(filenameSaveRes, mainArray, labelResult.Text); // сохранение результатов
         }
     }
 }

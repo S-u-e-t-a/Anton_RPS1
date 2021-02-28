@@ -54,10 +54,10 @@ namespace firstLab
         ///</summary>
         private void ButtonEnterArray_Click(object sender, EventArgs e) // если нажата кнопка Запуск
         { 
-            InputData Process = new InputData(); // создаём объект класса InputData
+            var Process = new InputData(); // создаём объект класса InputData
             if (radioButtonManual.Checked) // если выбран ручной ввод
             {
-                string inputtedArray = InputArrayTextBox.Text; // вводим массив
+                var inputtedArray = InputArrayTextBox.Text; // вводим массив
                 if (string.IsNullOrEmpty(inputtedArray)) // обработка пустой строки
                 {
                     MessageBox.Show(@"Вы пытаетесь ввести пустую строку. Попытайтесь еще раз", @"Внимание!");
@@ -184,7 +184,7 @@ namespace firstLab
         { 
             var infoWindow = new AboutBox(); // создание объекта класса AboutBox
             if (!Application.OpenForms.OfType<AboutBox>().Any())
-                infoWindow.Show(); // открываем форму с информацией
+                infoWindow.Show(); // открываем форму с информацией один раз
         }
 
         private void SaveINToolStripMenuItem_Click(object sender, EventArgs e)
